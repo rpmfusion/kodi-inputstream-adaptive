@@ -1,11 +1,11 @@
 %global aname inputstream.adaptive
-%global commit c51b9a9b58a645f820883e6d99982277fc58aac5
-%global commit_date 20180329
-%global kodi_version 17.0
+%global commit aedfa5084a65203ea9288b5a3e73b5df2cfa8ae9
+%global commit_date 20180420
+%global kodi_version 18.0
 %global short_commit %(c=%{commit}; echo ${c:0:7})
 
 Name:           kodi-inputstream-adaptive
-Version:        2.0.20
+Version:        2.2.16
 
 Release:        0.1.%{commit_date}git%{short_commit}%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
@@ -51,6 +51,9 @@ find $RPM_BUILD_ROOT%{_datadir}/kodi/addons/ -type f -exec chmod 0644 {} \;
 %{_datadir}/kodi/addons/%{aname}/
 
 %changelog
+* Mon Apr 30 2018 Dominic Robinson <github@dcrdev.com> - 2.2.16-0.1.20180420gitaedfa50
+- Bump to 2.2.16 'release'
+
 * Mon Apr 30 2018 Dominic Robinson <github@dcrdev.com> - 2.0.20-0.1.20180329gitc51b9a9
 - Bump to 2.0.20 'release'
 
