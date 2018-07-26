@@ -7,7 +7,7 @@
 Name:           kodi-inputstream-adaptive
 Version:        2.2.16
 
-Release:        0.1.%{commit_date}git%{short_commit}%{?dist}
+Release:        0.2.%{commit_date}git%{short_commit}%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
 
 Group:          Applications/Multimedia
@@ -51,6 +51,9 @@ find $RPM_BUILD_ROOT%{_datadir}/kodi/addons/ -type f -exec chmod 0644 {} \;
 %{_datadir}/kodi/addons/%{aname}/
 
 %changelog
+* Thu Jul 26 2018 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 2.2.16-0.2.20180420gitaedfa50
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
+
 * Mon Apr 30 2018 Dominic Robinson <github@dcrdev.com> - 2.2.16-0.1.20180420gitaedfa50
 - Bump to 2.2.16 'release'
 
