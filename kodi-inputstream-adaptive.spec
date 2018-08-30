@@ -1,19 +1,16 @@
 %global aname inputstream.adaptive
-%global commit aedfa5084a65203ea9288b5a3e73b5df2cfa8ae9
-%global commit_date 20180420
 %global kodi_version 18.0
-%global short_commit %(c=%{commit}; echo ${c:0:7})
 
 Name:           kodi-inputstream-adaptive
-Version:        2.2.16
+Version:        2.2.25
 
-Release:        0.2.%{commit_date}git%{short_commit}%{?dist}
+Release:        1%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
 
 Group:          Applications/Multimedia
 License:        GPLv2+
 URL:            https://github.com/peak3d/inputstream.adaptive/
-Source0:        https://github.com/peak3d/%{aname}/archive/%{short_commit}/%{aname}-%{commit}.tar.gz
+Source0:        https://github.com/peak3d/%{aname}/archive/%{version}/%{aname}-%{version}.tar.gz
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
@@ -24,13 +21,13 @@ BuildRequires:  expat-devel
 Requires:       kodi >= %{kodi_version}
 Provides:       bundled(bento4)
 
-ExclusiveArch:  i686 x86_64
+ExclusiveArch:  i686 x86_64 aarch64
 
 %description
 %{summary}.
 
 %prep
-%setup -q -n %{aname}-%{commit}
+%autosetup -n %{aname}-%{version}
 
 # Fix spurious-executable-perm on debug package
 find . -name '*.h' -or -name '*.cpp' | xargs chmod a-x
@@ -44,6 +41,7 @@ find . -name '*.h' -or -name '*.cpp' | xargs chmod a-x
 
 # Fix permissions at installation
 find $RPM_BUILD_ROOT%{_datadir}/kodi/addons/ -type f -exec chmod 0644 {} \;
+chmod 0755 $RPM_BUILD_ROOT%{_libdir}/kodi/addons/%{aname}/*.so
 
 %files
 %doc %{_datadir}/kodi/addons/%{aname}/changelog.txt
@@ -51,6 +49,11 @@ find $RPM_BUILD_ROOT%{_datadir}/kodi/addons/ -type f -exec chmod 0644 {} \;
 %{_datadir}/kodi/addons/%{aname}/
 
 %changelog
+* Thu Aug 30 2018 Mohamed El Morabity <melmorabity@fedoraproject.org> - 2.2.25-1
+- Update to 2.2.25
+- Enable aarch64 build
+- Fix permissions
+
 * Thu Jul 26 2018 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 2.2.16-0.2.20180420gitaedfa50
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
