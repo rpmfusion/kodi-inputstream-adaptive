@@ -2,7 +2,7 @@
 %global kodi_version 18.0
 
 Name:           kodi-inputstream-adaptive
-Version:        2.2.25
+Version:        2.3.17
 
 Release:        2%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
@@ -49,6 +49,9 @@ chmod 0755 $RPM_BUILD_ROOT%{_libdir}/kodi/addons/%{aname}/*.so
 %{_datadir}/kodi/addons/%{aname}/
 
 %changelog
+* Thu May 02 2019 Håkon Botnmark Jahre <haakobja@gmail.com> - 2.3.17
+- Update to 2.3.17
+
 * Mon Oct 15 2018 Mohamed El Morabity <melmorabity@fedoraproject.org> - 2.2.25-2
 - Enable arm build
 
