@@ -1,16 +1,17 @@
 %global aname inputstream.adaptive
 %global kodi_version 18.0
+%global kodi_branch Leia
 
 Name:           kodi-inputstream-adaptive
-Version:        2.3.17
+Version:        2.3.22
 
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
 
 Group:          Applications/Multimedia
 License:        GPLv2+
 URL:            https://github.com/peak3d/inputstream.adaptive/
-Source0:        https://github.com/peak3d/%{aname}/archive/%{version}/%{aname}-%{version}.tar.gz
+Source0:        https://github.com/peak3d/%{aname}/archive/%{version}-%{kodi_branch}/%{aname}-%{version}-%{kodi_branch}.tar.gz
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
@@ -27,7 +28,7 @@ ExcludeArch:    %{power64} ppc64le
 %{summary}.
 
 %prep
-%autosetup -n %{aname}-%{version}
+%autosetup -n %{aname}-%{version}-%{kodi_branch}
 
 # Fix spurious-executable-perm on debug package
 find . -name '*.h' -or -name '*.cpp' | xargs chmod a-x
@@ -49,6 +50,9 @@ chmod 0755 $RPM_BUILD_ROOT%{_libdir}/kodi/addons/%{aname}/*.so
 %{_datadir}/kodi/addons/%{aname}/
 
 %changelog
+* Mon Sep 02 2019 Michael Cronenworth <mike@cchtml.com> - 2.3.22-1
+- Update to 2.3.22
+
 * Fri Aug 09 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 2.3.17-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
