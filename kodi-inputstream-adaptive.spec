@@ -3,39 +3,43 @@
 %global kodi_branch Leia
 
 Name:           kodi-inputstream-adaptive
-Version:        2.3.22
+Version:        2.4.2
 
 Release:        1%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
 
-Group:          Applications/Multimedia
-License:        GPLv2+
-URL:            https://github.com/peak3d/inputstream.adaptive/
-Source0:        https://github.com/peak3d/%{aname}/archive/%{version}-%{kodi_branch}/%{aname}-%{version}-%{kodi_branch}.tar.gz
+# wvdecryper contains parts of Chromium CDM under BSD
+License:        GPLv2+ and BSD
+URL:            https://github.com/peak3d/%{aname}/
+Source0:        %{url}/archive/%{version}-%{kodi_branch}/%{aname}-%{version}-%{kodi_branch}.tar.gz
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  kodi-devel >= %{kodi_version}
-BuildRequires:  kodi-platform-devel
 BuildRequires:  expat-devel
 
 Requires:       kodi >= %{kodi_version}
 Provides:       bundled(bento4)
+Provides:       bundled(libwebm)
 
 ExcludeArch:    %{power64} ppc64le
 
 %description
 %{summary}.
 
+
 %prep
 %autosetup -n %{aname}-%{version}-%{kodi_branch}
 
 # Fix spurious-executable-perm on debug package
-find . -name '*.h' -or -name '*.cpp' | xargs chmod a-x
+find . -name '*.h' -or -name '*.c' -or -name '*.cc' -or -name '*.cpp' | xargs chmod a-x
+chmod a-x README.md %{aname}/changelog.txt
+
 
 %build
 %cmake .
 %make_build
+
 
 %install
 %make_install
@@ -44,12 +48,18 @@ find . -name '*.h' -or -name '*.cpp' | xargs chmod a-x
 find $RPM_BUILD_ROOT%{_datadir}/kodi/addons/ -type f -exec chmod 0644 {} \;
 chmod 0755 $RPM_BUILD_ROOT%{_libdir}/kodi/addons/%{aname}/*.so
 
+
 %files
-%doc %{_datadir}/kodi/addons/%{aname}/changelog.txt
+%doc README.md %{aname}/changelog.txt
+%license LICENSE.GPL
 %{_libdir}/kodi/addons/%{aname}/
 %{_datadir}/kodi/addons/%{aname}/
 
+
 %changelog
+* Mon Jan 20 2020 Mohamed El Morabity <melmorabity@fedoraproject.org> - 2.4.2-1
+- Update to 2.4.2
+
 * Mon Sep 02 2019 Michael Cronenworth <mike@cchtml.com> - 2.3.22-1
 - Update to 2.3.22
 
