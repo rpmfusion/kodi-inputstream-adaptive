@@ -3,9 +3,9 @@
 %global kodi_branch Leia
 
 Name:           kodi-inputstream-adaptive
-Version:        2.4.2
+Version:        2.4.3
 
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
 
 # wvdecryper contains parts of Chromium CDM under BSD
@@ -57,6 +57,9 @@ chmod 0755 $RPM_BUILD_ROOT%{_libdir}/kodi/addons/%{aname}/*.so
 
 
 %changelog
+* Thu Feb 27 2020 Michael Cronenworth <mike@cchtml.com> - 2.4.3-1
+- Update to 2.4.3
+
 * Tue Feb 04 2020 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 2.4.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
