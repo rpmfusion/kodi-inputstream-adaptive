@@ -3,7 +3,7 @@
 %global kodi_branch Leia
 
 Name:           kodi-inputstream-adaptive
-Version:        2.4.3
+Version:        2.4.4
 
 Release:        1%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
@@ -57,6 +57,9 @@ chmod 0755 $RPM_BUILD_ROOT%{_libdir}/kodi/addons/%{aname}/*.so
 
 
 %changelog
+* Wed Apr 15 2020 Michael Cronenworth <mike@cchtml.com> - 2.4.4-1
+- Update to 2.4.4
+
 * Thu Feb 27 2020 Michael Cronenworth <mike@cchtml.com> - 2.4.3-1
 - Update to 2.4.3
 
