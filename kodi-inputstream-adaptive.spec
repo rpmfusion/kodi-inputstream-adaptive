@@ -2,6 +2,8 @@
 %global kodi_version 18.0
 %global kodi_branch Leia
 
+%undefine __cmake_in_source_build
+
 Name:           kodi-inputstream-adaptive
 Version:        2.4.4
 
@@ -13,7 +15,7 @@ License:        GPLv2+ and BSD
 URL:            https://github.com/peak3d/%{aname}/
 Source0:        %{url}/archive/%{version}-%{kodi_branch}/%{aname}-%{version}-%{kodi_branch}.tar.gz
 
-BuildRequires:  cmake
+BuildRequires:  cmake3
 BuildRequires:  gcc-c++
 BuildRequires:  kodi-devel >= %{kodi_version}
 BuildRequires:  expat-devel
@@ -37,12 +39,12 @@ chmod a-x README.md %{aname}/changelog.txt
 
 
 %build
-%cmake .
-%make_build
+%cmake3
+%cmake3_build
 
 
 %install
-%make_install
+%cmake3_install
 
 # Fix permissions at installation
 find $RPM_BUILD_ROOT%{_datadir}/kodi/addons/ -type f -exec chmod 0644 {} \;
