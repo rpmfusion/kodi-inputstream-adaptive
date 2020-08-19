@@ -1,13 +1,13 @@
 %global aname inputstream.adaptive
-%global kodi_version 18.0
-%global kodi_branch Leia
+%global kodi_version 19.0
+%global kodi_branch Matrix
 
-%undefine __cmake_in_source_build
+# %%undefine __cmake_in_source_build
 
 Name:           kodi-inputstream-adaptive
-Version:        2.4.4
+Version:        2.6.0
 
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
 
 # wvdecryper contains parts of Chromium CDM under BSD
@@ -59,6 +59,9 @@ chmod 0755 $RPM_BUILD_ROOT%{_libdir}/kodi/addons/%{aname}/*.so
 
 
 %changelog
+* Wed Aug 19 2020 Mohamed El Morabity <melmorabity@fedoraproject.org> - 2.6.0-1
+- Update to 2.6.0 (switch to Matrix branch)
+
 * Tue Aug 18 2020 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 2.4.4-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
