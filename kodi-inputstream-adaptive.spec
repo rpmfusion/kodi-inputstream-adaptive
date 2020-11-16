@@ -5,7 +5,7 @@
 # %%undefine __cmake_in_source_build
 
 Name:           kodi-inputstream-adaptive
-Version:        2.6.0
+Version:        2.6.4
 
 Release:        1%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
@@ -59,6 +59,9 @@ chmod 0755 $RPM_BUILD_ROOT%{_libdir}/kodi/addons/%{aname}/*.so
 
 
 %changelog
+* Mon Nov 16 20:36:41 CET 2020 Mohamed El Morabity <melmorabity@fedoraproject.org> - 2.6.4-1
+- Update to 2.6.4
+
 * Wed Aug 19 2020 Mohamed El Morabity <melmorabity@fedoraproject.org> - 2.6.0-1
 - Update to 2.6.0 (switch to Matrix branch)
 
