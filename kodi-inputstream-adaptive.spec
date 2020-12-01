@@ -5,7 +5,7 @@
 # %%undefine __cmake_in_source_build
 
 Name:           kodi-inputstream-adaptive
-Version:        2.6.4
+Version:        2.6.6
 
 Release:        1%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
@@ -18,7 +18,7 @@ Source0:        %{url}/archive/%{version}-%{kodi_branch}/%{aname}-%{version}-%{k
 BuildRequires:  cmake3
 BuildRequires:  gcc-c++
 BuildRequires:  kodi-devel >= %{kodi_version}
-BuildRequires:  expat-devel
+BuildRequires:  pkgconfig(expat)
 
 Requires:       kodi >= %{kodi_version}
 Provides:       bundled(bento4)
@@ -59,7 +59,10 @@ chmod 0755 $RPM_BUILD_ROOT%{_libdir}/kodi/addons/%{aname}/*.so
 
 
 %changelog
-* Mon Nov 16 20:36:41 CET 2020 Mohamed El Morabity <melmorabity@fedoraproject.org> - 2.6.4-1
+* Mon Nov 30 2020 Mohamed El Morabity <melmorabity@fedoraproject.org> - 2.6.6-1
+- Update to 2.6.6
+
+* Mon Nov 16 2020 Mohamed El Morabity <melmorabity@fedoraproject.org> - 2.6.4-1
 - Update to 2.6.4
 
 * Wed Aug 19 2020 Mohamed El Morabity <melmorabity@fedoraproject.org> - 2.6.0-1
