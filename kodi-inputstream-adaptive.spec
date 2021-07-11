@@ -5,7 +5,7 @@
 # %%undefine __cmake_in_source_build
 
 Name:           kodi-inputstream-adaptive
-Version:        2.6.16
+Version:        2.6.17
 
 Release:        1%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
@@ -20,10 +20,11 @@ BuildRequires:  gcc-c++
 BuildRequires:  gtest-devel
 BuildRequires:  kodi-devel >= %{kodi_version}
 BuildRequires:  pkgconfig(expat)
-
-Requires:       kodi >= %{kodi_version}
+BuildRequires:  pkgconfig(gtest)
+Requires:       kodi%{?_isa} >= %{kodi_version}
 Provides:       bundled(bento4)
 Provides:       bundled(libwebm)
+Provides:       bundled(md5-thilo)
 
 ExcludeArch:    %{power64} ppc64le
 
@@ -36,7 +37,6 @@ ExcludeArch:    %{power64} ppc64le
 
 # Fix spurious-executable-perm on debug package
 find . -name '*.h' -or -name '*.c' -or -name '*.cc' -or -name '*.cpp' | xargs chmod a-x
-chmod a-x README.md %{aname}/changelog.txt
 
 
 %build
@@ -48,18 +48,25 @@ chmod a-x README.md %{aname}/changelog.txt
 %cmake3_install
 
 # Fix permissions at installation
-find $RPM_BUILD_ROOT%{_datadir}/kodi/addons/ -type f -exec chmod 0644 {} \;
 chmod 0755 $RPM_BUILD_ROOT%{_libdir}/kodi/addons/%{aname}/*.so
 
 
+%check
+%ctest
+
+
 %files
-%doc README.md %{aname}/changelog.txt
+%doc README.md
 %license LICENSE.GPL
 %{_libdir}/kodi/addons/%{aname}/
 %{_datadir}/kodi/addons/%{aname}/
 
 
 %changelog
+* Sun Jul 11 2021 Mohamed El Morabity <melmorabity@fedoraproject.org> - 2.6.17-1
+- Update to 2.6.17
+- Add tests
+
 * Wed Jun 09 2021 Michael Cronenworth <mike@cchtml.com> - 2.6.16-1
 - Update to 2.6.16
 
