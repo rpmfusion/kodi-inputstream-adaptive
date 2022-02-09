@@ -7,7 +7,7 @@
 Name:           kodi-inputstream-adaptive
 Version:        19.0.0
 
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
 
 # wvdecryper contains parts of Chromium CDM under BSD
@@ -63,6 +63,9 @@ chmod 0755 $RPM_BUILD_ROOT%{_libdir}/kodi/addons/%{aname}/*.so
 
 
 %changelog
+* Wed Feb 09 2022 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 19.0.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
+
 * Tue Nov 16 2021 Michael Cronenworth <mike@cchtml.com> - 19.0.0-1
 - Update to 19.0.0
 
