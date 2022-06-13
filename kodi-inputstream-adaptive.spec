@@ -5,7 +5,7 @@
 # %%undefine __cmake_in_source_build
 
 Name:           kodi-inputstream-adaptive
-Version:        19.0.3
+Version:        19.0.5
 
 Release:        1%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
@@ -63,6 +63,9 @@ chmod 0755 $RPM_BUILD_ROOT%{_libdir}/kodi/addons/%{aname}/*.so
 
 
 %changelog
+* Mon Jun 13 2022 Michael Cronenworth <mike@cchtml.com> - 19.0.5-1
+- Update to 19.0.5
+
 * Wed Mar 09 2022 Michael Cronenworth <mike@cchtml.com> - 19.0.3-1
 - Update to 19.0.3
 
