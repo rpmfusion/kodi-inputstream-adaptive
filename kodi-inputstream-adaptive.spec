@@ -39,7 +39,7 @@ ExcludeArch:    %{power64}
 
 
 %prep
-%autosetup -n %{kodi_addon}-%{version}-%{kodi_branch}
+%autosetup -n %{kodi_addon}-%{version}-%{kodi_codename}
 
 
 %build
