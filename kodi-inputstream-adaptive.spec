@@ -9,7 +9,7 @@
 
 Name:           kodi-inputstream-adaptive
 Version:        20.3.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
 
 # - wvdecrypter contains parts of Chromium CDM under
@@ -20,6 +20,8 @@ URL:            https://github.com/xbmc/%{kodi_addon}/
 Source0:        %{url}/archive/%{version}-%{kodi_codename}/%{kodi_addon}-%{version}.tar.gz
 Source1:        https://github.com/xbmc/Bento4/archive/%{internal_bento4_tag}/Bento4-%{internal_bento4_tag}.tar.gz
 Source2:        %{name}.metainfo.xml
+# Fix build with GCC 13
+Patch0:         %{name}-20.3.2-gcc13.patch
 
 BuildRequires:  cmake3
 BuildRequires:  gcc-c++
@@ -39,7 +41,7 @@ ExcludeArch:    %{power64}
 
 
 %prep
-%autosetup -n %{kodi_addon}-%{version}-%{kodi_codename}
+%autosetup -n %{kodi_addon}-%{version}-%{kodi_codename} -p0
 
 
 %build
@@ -71,8 +73,11 @@ appstream-util validate-relax --nonet $RPM_BUILD_ROOT%{_metainfodir}/%{name}.met
 
 
 %changelog
-* Sun Jan 29 2023 Mohamed El Morabity <melmorabity@fedoraproject.org> - 20.3.0-1
-- Update to 20.3.0
+* Sun Jan 29 2023 Mohamed El Morabity <melmorabity@fedoraproject.org> - 20.3.2-2
+- Fix build with GCC 13
+
+* Sun Jan 29 2023 Mohamed El Morabity <melmorabity@fedoraproject.org> - 20.3.2-1
+- Update to 20.3.2
 - Add AppStream metadata
 - Switch to SPDX license identifiers
 

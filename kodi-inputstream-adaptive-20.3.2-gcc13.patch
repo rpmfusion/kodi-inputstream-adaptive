@@ -1,0 +1,84 @@
+diff -up ./src/common/AdaptiveDecrypter.h.orig ./src/common/AdaptiveDecrypter.h
+--- ./src/common/AdaptiveDecrypter.h.orig	2023-01-11 22:37:47.000000000 +0100
++++ ./src/common/AdaptiveDecrypter.h	2023-01-29 22:50:19.875120342 +0100
+@@ -12,6 +12,7 @@
+ 
+ #include <stdexcept>
+ #include <string_view>
++#include <cstdint>
+ 
+ #include <bento4/Ap4.h>
+ 
+diff -up ./src/Iaes_decrypter.h.orig ./src/Iaes_decrypter.h
+--- ./src/Iaes_decrypter.h.orig	2023-01-11 22:37:47.000000000 +0100
++++ ./src/Iaes_decrypter.h	2023-01-29 22:49:06.804158436 +0100
+@@ -11,6 +11,7 @@
+ #include <bento4/Ap4Types.h>
+ 
+ #include <string>
++#include <cstdint>
+ 
+ class IAESDecrypter
+ {
+@@ -31,4 +32,4 @@ public:
+ 
+ private:
+   std::string m_licenseKey;
+-};
+\ Pas de fin de ligne à la fin du fichier
++};
+diff -up ./src/SSD_dll.h.orig ./src/SSD_dll.h
+--- ./src/SSD_dll.h.orig	2023-01-11 22:37:47.000000000 +0100
++++ ./src/SSD_dll.h	2023-01-29 22:43:40.145864970 +0100
+@@ -10,6 +10,7 @@
+ 
+ #include <stdarg.h> // va_list, va_start, va_arg, va_end
+ #include <string_view>
++#include <cstdint>
+ 
+ //Functionality wich is supported by the Decrypter
+ class Adaptive_CencSingleSampleDecrypter;
+diff -up ./src/test/KodiStubs.h.orig ./src/test/KodiStubs.h
+--- ./src/test/KodiStubs.h.orig	2023-01-11 22:37:47.000000000 +0100
++++ ./src/test/KodiStubs.h	2023-01-29 22:54:37.546519345 +0100
+@@ -12,6 +12,7 @@
+ 
+ #include <string>
+ #include <vector>
++#include <cstdint>
+ 
+ #ifdef _WIN32 // windows
+ #if !defined(_SSIZE_T_DEFINED) && !defined(HAVE_SSIZE_T)
+diff -up ./src/utils/PropertiesUtils.h.orig ./src/utils/PropertiesUtils.h
+--- ./src/utils/PropertiesUtils.h.orig	2023-01-11 22:37:47.000000000 +0100
++++ ./src/utils/PropertiesUtils.h	2023-01-29 22:51:41.581198149 +0100
+@@ -11,6 +11,7 @@
+ #include <map>
+ #include <string>
+ #include <utility>
++#include <cstdint>
+ 
+ namespace UTILS
+ {
+diff -up ./src/utils/StringUtils.h.orig ./src/utils/StringUtils.h
+--- ./src/utils/StringUtils.h.orig	2023-01-11 22:37:47.000000000 +0100
++++ ./src/utils/StringUtils.h	2023-01-29 22:55:37.497310175 +0100
+@@ -11,6 +11,7 @@
+ #include <string>
+ #include <string_view>
+ #include <vector>
++#include <cstdint>
+ 
+ namespace UTILS
+ {
+diff -up ./src/utils/Utils.h.orig ./src/utils/Utils.h
+--- ./src/utils/Utils.h.orig	2023-01-11 22:37:47.000000000 +0100
++++ ./src/utils/Utils.h	2023-01-29 22:53:01.149247750 +0100
+@@ -12,6 +12,7 @@
+ #include <string>
+ #include <string_view>
+ #include <vector>
++#include <cstdint>
+ 
+ namespace UTILS
+ {
