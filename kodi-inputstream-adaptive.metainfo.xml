@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="addon">
+  <id>kodi-inputstream-adaptive</id>
+  <extends>kodi.desktop</extends>
+  <name>InputStream Adaptive</name>
+  <summary>InputStream client for adaptive streams</summary>
+  <url type="homepage">https://github.com/xbmc/inputstream.adaptive/</url>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0-or-later AND BSD-2-Clause-Views AND BSD-3-Clause AND RSA-MD</project_license>
+  <update_contact>melmorabity@fedoraproject.org</update_contact>
+</component>

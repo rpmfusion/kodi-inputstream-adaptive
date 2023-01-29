@@ -1,68 +1,81 @@
-%global aname inputstream.adaptive
-%global kodi_version 19.0
-%global kodi_branch Matrix
+%global kodi_addon inputstream.adaptive
+%global kodi_version 20
+%global kodi_codename Nexus
 
-# %%undefine __cmake_in_source_build
+# Internal bento4 version (forked and maintained by Kodi developers, and
+# required by this addon, see depends/common/bento4/bento4.txt)
+%global internal_bento4_version 1.6.0-639
+%global internal_bento4_tag %{internal_bento4_version}-5-%{kodi_codename}
 
 Name:           kodi-inputstream-adaptive
-Version:        19.0.7
-
-Release:        2%{?dist}
+Version:        20.3.2
+Release:        1%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
 
-# wvdecryper contains parts of Chromium CDM under BSD
-License:        GPLv2+ and BSD
-URL:            https://github.com/peak3d/%{aname}/
-Source0:        %{url}/archive/%{version}-%{kodi_branch}/%{aname}-%{version}-%{kodi_branch}.tar.gz
+# - wvdecrypter contains parts of Chromium CDM under
+#   BSD-2-Clause-Views/BSD-3-Clause
+# - src/md5.* are RSA-MD
+License:        GPL-2.0-or-later AND BSD-2-Clause-Views AND BSD-3-Clause AND RSA-MD
+URL:            https://github.com/xbmc/%{kodi_addon}/
+Source0:        %{url}/archive/%{version}-%{kodi_codename}/%{kodi_addon}-%{version}.tar.gz
+Source1:        https://github.com/xbmc/Bento4/archive/%{internal_bento4_tag}/Bento4-%{internal_bento4_tag}.tar.gz
+Source2:        %{name}.metainfo.xml
 
 BuildRequires:  cmake3
 BuildRequires:  gcc-c++
-BuildRequires:  gtest-devel
 BuildRequires:  kodi-devel >= %{kodi_version}
+BuildRequires:  libappstream-glib
 BuildRequires:  pkgconfig(expat)
 BuildRequires:  pkgconfig(gtest)
 Requires:       kodi%{?_isa} >= %{kodi_version}
-Provides:       bundled(bento4)
+Provides:       bundled(bento4) = %{internal_bento4_version}
 Provides:       bundled(libwebm)
 Provides:       bundled(md5-thilo)
 
-ExcludeArch:    %{power64} ppc64le
+ExcludeArch:    %{power64}
 
 %description
 %{summary}.
 
 
 %prep
-%autosetup -n %{aname}-%{version}-%{kodi_branch}
-
-# Fix spurious-executable-perm on debug package
-find . -name '*.h' -or -name '*.c' -or -name '*.cc' -or -name '*.cpp' | xargs chmod a-x
+%autosetup -n %{kodi_addon}-%{version}-%{kodi_branch}
 
 
 %build
-%cmake3
+%cmake3 -DENABLE_INTERNAL_BENTO4=1 -DBENTO4_URL=%{SOURCE1}
 %cmake3_build
 
 
 %install
 %cmake3_install
 
-# Fix permissions at installation
-chmod 0755 $RPM_BUILD_ROOT%{_libdir}/kodi/addons/%{aname}/*.so
+# Install AppData file
+install -Dpm 0644 %{SOURCE2} $RPM_BUILD_ROOT%{_metainfodir}/%{name}.metainfo.xml
+
+# Fix permissions
+chmod 0755 $RPM_BUILD_ROOT%{_libdir}/kodi/addons/%{kodi_addon}/libssd_wv.so
 
 
 %check
 %ctest
+appstream-util validate-relax --nonet $RPM_BUILD_ROOT%{_metainfodir}/%{name}.metainfo.xml
 
 
 %files
 %doc README.md
-%license LICENSE.GPL
-%{_libdir}/kodi/addons/%{aname}/
-%{_datadir}/kodi/addons/%{aname}/
+%license LICENSE.md LICENSES/
+%{_libdir}/kodi/addons/%{kodi_addon}/
+%{_datadir}/kodi/addons/%{kodi_addon}/
+%{_metainfodir}/%{name}.metainfo.xml
 
 
 %changelog
+* Sun Jan 29 2023 Mohamed El Morabity <melmorabity@fedoraproject.org> - 20.3.0-1
+- Update to 20.3.0
+- Add AppStream metadata
+- Switch to SPDX license identifiers
+
 * Sun Aug 07 2022 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 19.0.7-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild and ffmpeg
   5.1
