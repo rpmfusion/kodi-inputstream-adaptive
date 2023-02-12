@@ -5,11 +5,11 @@
 # Internal bento4 version (forked and maintained by Kodi developers, and
 # required by this addon, see depends/common/bento4/bento4.txt)
 %global internal_bento4_version 1.6.0-639
-%global internal_bento4_tag %{internal_bento4_version}-5-%{kodi_codename}
+%global internal_bento4_tag %{internal_bento4_version}-6-%{kodi_codename}
 
 Name:           kodi-inputstream-adaptive
-Version:        20.3.2
-Release:        2%{?dist}
+Version:        20.3.3
+Release:        1%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
 
 # - wvdecrypter contains parts of Chromium CDM under
@@ -73,6 +73,9 @@ appstream-util validate-relax --nonet $RPM_BUILD_ROOT%{_metainfodir}/%{name}.met
 
 
 %changelog
+* Sun Feb 12 2023 Mohamed El Morabity <melmorabity@fedoraproject.org> - 20.3.3-1
+- Update to 20.3.3
+
 * Sun Jan 29 2023 Mohamed El Morabity <melmorabity@fedoraproject.org> - 20.3.2-2
 - Fix build with GCC 13
 
