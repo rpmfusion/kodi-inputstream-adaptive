@@ -21,7 +21,7 @@ Source0:        %{url}/archive/%{version}-%{kodi_codename}/%{kodi_addon}-%{versi
 Source1:        https://github.com/xbmc/Bento4/archive/%{internal_bento4_tag}/Bento4-%{internal_bento4_tag}.tar.gz
 Source2:        %{name}.metainfo.xml
 # Fix build with GCC 13
-Patch0:         %{name}-20.3.2-gcc13.patch
+Patch0:         %{name}-20.3.5-gcc13.patch
 
 BuildRequires:  cmake3
 BuildRequires:  gcc-c++
