@@ -5,10 +5,10 @@
 # Internal bento4 version (forked and maintained by Kodi developers, and
 # required by this addon, see depends/common/bento4/bento4.txt)
 %global internal_bento4_version 1.6.0-639
-%global internal_bento4_tag %{internal_bento4_version}-6-%{kodi_codename}
+%global internal_bento4_tag %{internal_bento4_version}-7-Omega
 
 Name:           kodi-inputstream-adaptive
-Version:        20.3.6
+Version:        20.3.9
 Release:        1%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
 
@@ -17,7 +17,7 @@ Summary:        Adaptive file addon for Kodi's InputStream interface
 # - src/md5.* are RSA-MD
 License:        GPL-2.0-or-later AND BSD-2-Clause-Views AND BSD-3-Clause AND RSA-MD
 URL:            https://github.com/xbmc/%{kodi_addon}/
-Source0:        %{url}/archive/%{version}-%{kodi_codename}/%{kodi_addon}-%{version}.tar.gz
+Source0:        %{url}/archive/%{version}-%{kodi_codename}/%{kodi_addon}-%{version}-%{kodi_codename}.tar.gz
 Source1:        https://github.com/xbmc/Bento4/archive/%{internal_bento4_tag}/Bento4-%{internal_bento4_tag}.tar.gz
 Source2:        %{name}.metainfo.xml
 # Fix build with GCC 13
@@ -73,6 +73,9 @@ appstream-util validate-relax --nonet $RPM_BUILD_ROOT%{_metainfodir}/%{name}.met
 
 
 %changelog
+* Sat Jul 08 2023 Michael Cronenworth <mike@cchtml.com> - 20.3.9-1
+- Update to 20.3.9
+
 * Sun Apr 09 2023 Mohamed El Morabity <melmorabity@fedoraproject.org> - 20.3.6-1
 - Update to 20.3.6
 
