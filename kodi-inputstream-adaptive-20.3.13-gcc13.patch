@@ -1,0 +1,17 @@
+diff -up ./src/Iaes_decrypter.h.orig ./src/Iaes_decrypter.h
+diff -up ./src/SSD_dll.h.orig ./src/SSD_dll.h
+diff -up ./src/test/KodiStubs.h.orig ./src/test/KodiStubs.h
+--- ./src/test/KodiStubs.h.orig	2023-09-22 19:21:33.000000000 +0200
++++ ./src/test/KodiStubs.h	2023-09-25 10:29:53.558246282 +0200
+@@ -10,6 +10,7 @@
+ 
+  // Kodi interface stubs
+ 
++#include <cstdint>
+ #include <string>
+ #include <vector>
+ 
+diff -up ./src/utils/FileUtils.h.orig ./src/utils/FileUtils.h
+diff -up ./src/utils/PropertiesUtils.h.orig ./src/utils/PropertiesUtils.h
+diff -up ./src/utils/StringUtils.h.orig ./src/utils/StringUtils.h
+diff -up ./src/utils/Utils.h.orig ./src/utils/Utils.h
