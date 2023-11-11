@@ -8,7 +8,7 @@
 %global internal_bento4_tag %{internal_bento4_version}-7-Omega
 
 Name:           kodi-inputstream-adaptive
-Version:        20.3.13
+Version:        20.3.14
 Release:        1%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
 
@@ -73,6 +73,9 @@ appstream-util validate-relax --nonet $RPM_BUILD_ROOT%{_metainfodir}/%{name}.met
 
 
 %changelog
+* Sat Nov 11 2023 Michael Cronenworth <mike@cchtml.com> - 20.3.14-1
+- Update to 20.3.14
+
 * Mon Sep 25 2023 Mohamed El Morabity <melmorabity@fedoraproject.org> - 20.3.13-1
 - Update to 20.3.13
 
