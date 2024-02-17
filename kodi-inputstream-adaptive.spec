@@ -8,8 +8,8 @@
 %global internal_bento4_tag %{internal_bento4_version}-7-Omega
 
 Name:           kodi-inputstream-adaptive
-Version:        20.3.14
-Release:        2%{?dist}
+Version:        20.3.17
+Release:        1%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
 
 # - wvdecrypter contains parts of Chromium CDM under
@@ -23,7 +23,7 @@ Source2:        %{name}.metainfo.xml
 # Fix build with GCC 13
 Patch0:         %{name}-20.3.13-gcc13.patch
 
-BuildRequires:  cmake3
+BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  kodi-devel >= %{kodi_version}
 BuildRequires:  libappstream-glib
@@ -45,12 +45,12 @@ ExcludeArch:    %{power64}
 
 
 %build
-%cmake3 -DENABLE_INTERNAL_BENTO4=1 -DBENTO4_URL=%{SOURCE1}
-%cmake3_build
+%cmake -DENABLE_INTERNAL_BENTO4=1 -DBENTO4_URL=%{SOURCE1}
+%cmake_build
 
 
 %install
-%cmake3_install
+%cmake_install
 
 # Install AppData file
 install -Dpm 0644 %{SOURCE2} $RPM_BUILD_ROOT%{_metainfodir}/%{name}.metainfo.xml
@@ -73,6 +73,9 @@ appstream-util validate-relax --nonet $RPM_BUILD_ROOT%{_metainfodir}/%{name}.met
 
 
 %changelog
+* Sat Feb 17 2024 Leigh Scott <leigh123linux@gmail.com> - 20.3.17-1
+- Update to 20.3.17
+
 * Sat Feb 03 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 20.3.14-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
 
