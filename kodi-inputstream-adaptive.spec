@@ -1,14 +1,14 @@
 %global kodi_addon inputstream.adaptive
-%global kodi_version 20
-%global kodi_codename Nexus
+%global kodi_version 21
+%global kodi_codename Omega
 
 # Internal bento4 version (forked and maintained by Kodi developers, and
 # required by this addon, see depends/common/bento4/bento4.txt)
 %global internal_bento4_version 1.6.0-639
-%global internal_bento4_tag %{internal_bento4_version}-7-Omega
+%global internal_bento4_tag %{internal_bento4_version}-8-Omega
 
 Name:           kodi-inputstream-adaptive
-Version:        20.3.18
+Version:        21.4.3
 Release:        1%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
 
@@ -20,8 +20,6 @@ URL:            https://github.com/xbmc/%{kodi_addon}/
 Source0:        %{url}/archive/%{version}-%{kodi_codename}/%{kodi_addon}-%{version}-%{kodi_codename}.tar.gz
 Source1:        https://github.com/xbmc/Bento4/archive/%{internal_bento4_tag}/Bento4-%{internal_bento4_tag}.tar.gz
 Source2:        %{name}.metainfo.xml
-# Fix build with GCC 13
-Patch0:         %{name}-20.3.13-gcc13.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
@@ -29,6 +27,7 @@ BuildRequires:  kodi-devel >= %{kodi_version}
 BuildRequires:  libappstream-glib
 BuildRequires:  pkgconfig(expat)
 BuildRequires:  pkgconfig(gtest)
+BuildRequires:  pkgconfig(pugixml)
 Requires:       kodi%{?_isa} >= %{kodi_version}
 Provides:       bundled(bento4) = %{internal_bento4_version}
 Provides:       bundled(libwebm)
@@ -55,9 +54,6 @@ ExcludeArch:    %{power64}
 # Install AppData file
 install -Dpm 0644 %{SOURCE2} $RPM_BUILD_ROOT%{_metainfodir}/%{name}.metainfo.xml
 
-# Fix permissions
-chmod 0755 $RPM_BUILD_ROOT%{_libdir}/kodi/addons/%{kodi_addon}/libssd_wv.so
-
 
 %check
 %ctest
@@ -73,6 +69,9 @@ appstream-util validate-relax --nonet $RPM_BUILD_ROOT%{_metainfodir}/%{name}.met
 
 
 %changelog
+* Mon Mar 11 2024 Michael Cronenworth <mike@cchtml.com> - 21.4.3-1
+- Update to 21.4.3
+
 * Sun Mar 10 2024 Mohamed El Morabity <melmorabity@fedoraproject.org> - 20.3.18-1
 - Update to 20.3.18
 
