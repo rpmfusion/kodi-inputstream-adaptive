@@ -4,11 +4,11 @@
 
 # Internal bento4 version (forked and maintained by Kodi developers, and
 # required by this addon, see depends/common/bento4/bento4.txt)
-%global internal_bento4_version 1.6.0-639
-%global internal_bento4_tag %{internal_bento4_version}-8-Omega
+%global internal_bento4_version 1.6.0-641
+%global internal_bento4_tag %{internal_bento4_version}-Omega
 
 Name:           kodi-inputstream-adaptive
-Version:        21.4.3
+Version:        21.4.4
 Release:        1%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
 
@@ -69,6 +69,9 @@ appstream-util validate-relax --nonet $RPM_BUILD_ROOT%{_metainfodir}/%{name}.met
 
 
 %changelog
+* Wed Apr 03 2024 Michael Cronenworth <mike@cchtml.com> - 21.4.4-1
+- Update to 21.4.4
+
 * Mon Mar 11 2024 Michael Cronenworth <mike@cchtml.com> - 21.4.3-1
 - Update to 21.4.3
 
