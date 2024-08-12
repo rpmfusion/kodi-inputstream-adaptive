@@ -5,11 +5,11 @@
 # Internal bento4 version (forked and maintained by Kodi developers, and
 # required by this addon, see depends/common/bento4/bento4.txt)
 %global internal_bento4_version 1.6.0-641
-%global internal_bento4_tag %{internal_bento4_version}-Omega
+%global internal_bento4_tag %{internal_bento4_version}-3-Omega
 
 Name:           kodi-inputstream-adaptive
-Version:        21.4.5
-Release:        2%{?dist}
+Version:        21.5.2
+Release:        1%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
 
 # - wvdecrypter contains parts of Chromium CDM under
@@ -70,6 +70,9 @@ appstream-util validate-relax --nonet $RPM_BUILD_ROOT%{_metainfodir}/%{name}.met
 
 
 %changelog
+* Mon Aug 12 2024 Michael Cronenworth <mike@cchtml.com> - 21.5.2-1
+- Update to 21.5.2
+
 * Fri Aug 02 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 21.4.5-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild
 
