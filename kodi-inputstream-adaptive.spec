@@ -9,7 +9,7 @@
 
 Name:           kodi-inputstream-adaptive
 Version:        21.5.6
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
 
 # - wvdecrypter contains parts of Chromium CDM under
@@ -70,6 +70,9 @@ appstream-util validate-relax --nonet $RPM_BUILD_ROOT%{_metainfodir}/%{name}.met
 
 
 %changelog
+* Tue Jan 28 2025 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 21.5.6-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_42_Mass_Rebuild
+
 * Wed Nov 13 2024 Michael Cronenworth <mike@cchtml.com> - 21.5.6-1
 - Update to 21.5.6
 
