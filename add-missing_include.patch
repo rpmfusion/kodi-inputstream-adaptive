@@ -1,0 +1,11 @@
+diff -uNrp a/src/common/AdaptiveUtils.h b/src/common/AdaptiveUtils.h
+--- a/src/common/AdaptiveUtils.h	2024-11-05 08:32:40.000000000 +0000
++++ b/src/common/AdaptiveUtils.h	2025-01-28 12:48:38.233230752 +0000
+@@ -13,6 +13,7 @@
+ #include <memory>
+ #include <string_view>
+ #include <vector>
++#include <cstdint>
+ 
+ // forwards
+ class AP4_Movie;

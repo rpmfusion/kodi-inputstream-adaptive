@@ -20,6 +20,7 @@ URL:            https://github.com/xbmc/%{kodi_addon}/
 Source0:        %{url}/archive/%{version}-%{kodi_codename}/%{kodi_addon}-%{version}-%{kodi_codename}.tar.gz
 Source1:        https://github.com/xbmc/Bento4/archive/%{internal_bento4_tag}/Bento4-%{internal_bento4_tag}.tar.gz
 Source2:        %{name}.metainfo.xml
+Patch0:         add-missing_include.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
@@ -41,7 +42,7 @@ ExcludeArch:    %{power64}
 
 
 %prep
-%autosetup -n %{kodi_addon}-%{version}-%{kodi_codename} -p0
+%autosetup -n %{kodi_addon}-%{version}-%{kodi_codename} -p1
 
 
 %build
