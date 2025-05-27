@@ -12,10 +12,10 @@ Version:        21.5.14
 Release:        1%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
 
-# - wvdecrypter contains parts of Chromium CDM under
-#   BSD-2-Clause-Views/BSD-3-Clause
-# - src/md5.* are RSA-MD
-License:        GPL-2.0-or-later AND BSD-2-Clause-Views AND BSD-3-Clause AND RSA-MD
+# - Main binary and all supporting files are GPL-2.0-or-later
+# - Chromium CDM files and libwebm are BSD-3-Clause
+# - src/utils/DigestMD5Utils.* are RSA-MD
+License:        GPL-2.0-or-later AND BSD-3-Clause AND RSA-MD
 URL:            https://github.com/xbmc/%{kodi_addon}/
 Source0:        %{url}/archive/%{version}-%{kodi_codename}/%{kodi_addon}-%{version}-%{kodi_codename}.tar.gz
 Source1:        https://github.com/xbmc/Bento4/archive/%{internal_bento4_tag}/Bento4-%{internal_bento4_tag}.tar.gz
@@ -26,12 +26,12 @@ BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  kodi-devel >= %{kodi_version}
 BuildRequires:  libappstream-glib
-BuildRequires:  pkgconfig(expat)
 BuildRequires:  pkgconfig(gtest)
 BuildRequires:  pkgconfig(pugixml)
 BuildRequires:  pkgconfig(RapidJSON)
 Requires:       kodi%{?_isa} >= %{kodi_version}
 Provides:       bundled(bento4) = %{internal_bento4_version}
+Provides:       bundled(cdm)
 Provides:       bundled(libwebm)
 Provides:       bundled(md5-thilo)
 
