@@ -9,7 +9,7 @@
 
 Name:           kodi-inputstream-adaptive
 Version:        21.5.14
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
 
 # - Main binary and all supporting files are GPL-2.0-or-later
@@ -71,6 +71,9 @@ appstream-util validate-relax --nonet $RPM_BUILD_ROOT%{_metainfodir}/%{name}.met
 
 
 %changelog
+* Sun Jul 27 2025 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 21.5.14-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_43_Mass_Rebuild
+
 * Sun May 25 2025 Mohamed El Morabity - 21.5.14-1
 - Update to 21.5.14
 
