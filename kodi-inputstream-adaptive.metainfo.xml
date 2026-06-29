@@ -6,6 +6,6 @@
   <summary>InputStream client for adaptive streams</summary>
   <url type="homepage">https://github.com/xbmc/inputstream.adaptive/</url>
   <metadata_license>CC0-1.0</metadata_license>
-  <project_license>GPL-2.0-or-later AND BSD-2-Clause-Views AND BSD-3-Clause AND RSA-MD</project_license>
+  <project_license>GPL-2.0-or-later AND BSD-2-Clause-Views AND BSD-3-Clause AND RSA-MD AND MIT</project_license>
   <update_contact>melmorabity@fedoraproject.org</update_contact>
 </component>

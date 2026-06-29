@@ -1,26 +1,29 @@
 %global kodi_addon inputstream.adaptive
-%global kodi_version 21
-%global kodi_codename Omega
+%global kodi_version 22
+%global kodi_codename Piers
 
 # Internal bento4 version (forked and maintained by Kodi developers, and
 # required by this addon, see depends/common/bento4/bento4.txt)
 %global internal_bento4_version 1.6.0-641
-%global internal_bento4_tag %{internal_bento4_version}-3-Omega
+%global internal_bento4_tag %{internal_bento4_version}-6-%{kodi_codename}
+%global internal_nlohmann_json_version 3.12.0
+%global internal_nlohmann_json_tag v%{internal_nlohmann_json_version}
 
 Name:           kodi-inputstream-adaptive
-Version:        21.5.14
-Release:        3%{?dist}
+Version:        22.3.17
+Release:        1%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
 
 # - Main binary and all supporting files are GPL-2.0-or-later
 # - Chromium CDM files and libwebm are BSD-3-Clause
 # - src/utils/DigestMD5Utils.* are RSA-MD
-License:        GPL-2.0-or-later AND BSD-3-Clause AND RSA-MD
+# - NlohmannJSON is MIT
+License:        GPL-2.0-or-later AND BSD-3-Clause AND RSA-MD AND MIT
 URL:            https://github.com/xbmc/%{kodi_addon}/
 Source0:        %{url}/archive/%{version}-%{kodi_codename}/%{kodi_addon}-%{version}-%{kodi_codename}.tar.gz
 Source1:        https://github.com/xbmc/Bento4/archive/%{internal_bento4_tag}/Bento4-%{internal_bento4_tag}.tar.gz
-Source2:        %{name}.metainfo.xml
-Patch0:         add-missing_include.patch
+Source2:        https://github.com/nlohmann/json/archive/%{internal_nlohmann_json_tag}/NlohmannJSON-%{internal_nlohmann_json_version}.tar.gz
+Source3:        %{name}.metainfo.xml
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
@@ -28,12 +31,12 @@ BuildRequires:  kodi-devel >= %{kodi_version}
 BuildRequires:  libappstream-glib
 BuildRequires:  pkgconfig(gtest)
 BuildRequires:  pkgconfig(pugixml)
-BuildRequires:  pkgconfig(RapidJSON)
 Requires:       kodi%{?_isa} >= %{kodi_version}
 Provides:       bundled(bento4) = %{internal_bento4_version}
 Provides:       bundled(cdm)
 Provides:       bundled(libwebm)
 Provides:       bundled(md5-thilo)
+Provides:       bundled(nlohmann_json) = %{internal_nlohmann_json_version}
 
 ExcludeArch:    %{power64}
 
@@ -43,10 +46,12 @@ ExcludeArch:    %{power64}
 
 %prep
 %autosetup -n %{kodi_addon}-%{version}-%{kodi_codename} -p1
+cd ..
+tar xvf %{SOURCE2}
 
 
 %build
-%cmake -DENABLE_INTERNAL_BENTO4=1 -DBENTO4_URL=%{SOURCE1}
+%cmake -DENABLE_INTERNAL_BENTO4=1 -DBENTO4_URL=%{SOURCE1} -DNLOHMANNJSON_INCLUDE_DIR=$RPM_BUILD_DIR/json-3.12.0/include/
 %cmake_build
 
 
@@ -54,7 +59,7 @@ ExcludeArch:    %{power64}
 %cmake_install
 
 # Install AppData file
-install -Dpm 0644 %{SOURCE2} $RPM_BUILD_ROOT%{_metainfodir}/%{name}.metainfo.xml
+install -Dpm 0644 %{SOURCE3} $RPM_BUILD_ROOT%{_metainfodir}/%{name}.metainfo.xml
 
 
 %check
@@ -71,6 +76,9 @@ appstream-util validate-relax --nonet $RPM_BUILD_ROOT%{_metainfodir}/%{name}.met
 
 
 %changelog
+* Mon Jun 29 2026 Michael Cronenworth <mike@cchtml.com> - 22.3.17-1
+- Update to 22.3.17
+
 * Mon Feb 02 2026 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 21.5.14-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_44_Mass_Rebuild
 
