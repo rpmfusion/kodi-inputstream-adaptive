@@ -10,7 +10,7 @@
 %global internal_nlohmann_json_tag v%{internal_nlohmann_json_version}
 
 Name:           kodi-inputstream-adaptive
-Version:        22.3.19
+Version:        22.3.24
 Release:        1%{?dist}
 Summary:        Adaptive file addon for Kodi's InputStream interface
 
@@ -76,6 +76,9 @@ appstream-util validate-relax --nonet $RPM_BUILD_ROOT%{_metainfodir}/%{name}.met
 
 
 %changelog
+* Tue Nov 10 2026 Michael Cronenworth <mike@cchtml.com> - 22.3.24-1
+- Update to 22.3.24
+
 * Sun Aug 02 2026 Leigh Scott <leigh123linux@gmail.com> - 22.3.19-1
 - Update to 22.3.19
 
